@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import ugettext_lazy as _
+
 from rest_framework import serializers
 
 
@@ -16,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
         return get_user_model().objects.create_user(**validated_data)
 
     def update(self, instance, validated_data):
-        """Updte a user, stettingthe password correctly and return it"""
+        """Update a user, setting the password correctly and return it"""
         password = validated_data.pop('password', None)
         user = super().update(instance, validated_data)
 
